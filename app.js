@@ -7,6 +7,9 @@ const app = express();
 const bodyParser = require("body-parser");
 // const path = require("path");
 const userRoutes = require("./routes/users");
+const courseRoutes = require("./routes/course");
+const subjectRoutes = require("./routes/subject");
+
 //middlewere
 // console.log("__dirname ", __dirname);
 
@@ -19,6 +22,8 @@ passport.use(jwtStrategy);
 
 ////Route
 app.use(userRoutes);
+app.use("/course", courseRoutes);
+app.use("/subjects", subjectRoutes);
 
 // if i put wrong url for example: localhost:8000/tripssss
 app.use((req, res, next) => {
