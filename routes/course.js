@@ -26,8 +26,6 @@ router.param("courseId", async (req, res, next, courseId) => {
 router.post(
   "/:courseId/subjects",
 
-  passport.authenticate("jwt", { session: false }),
-
   creatSubject
 );
 router.get("/", courseList);
@@ -40,7 +38,6 @@ router.get("/", courseList);
 
 router.put(
   "/:courseId",
-  passport.authenticate("jwt", { session: false }),
 
   courseUpdate
 );

@@ -47,4 +47,7 @@ db.Sequelize = Sequelize;
 db.Course.hasMany(db.Subject, { as: "subjects", foreignKey: "courseId" });
 db.Subject.belongsTo(db.Course, { as: "course" });
 
+db.Subject.hasMany(db.Task, { as: "tasks", foreignKey: "subjectId" });
+db.Task.belongsTo(db.Subject, { as: "subject" });
+
 module.exports = db;

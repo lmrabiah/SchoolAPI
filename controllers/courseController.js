@@ -35,7 +35,16 @@ exports.courseList = async (req, res, next) => {
   try {
     const courses = await Course.findAll({
       attributes: { exclude: ["createdAt", "updatedAt"] },
+
+      include: [
+        {
+          model: Subject,
+          as: "subjects",
+          attributes: ["id"],
+        },
+      ],
     });
+
     res.json(courses);
   } catch (error) {
     next(error);

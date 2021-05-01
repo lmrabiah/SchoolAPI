@@ -7,6 +7,8 @@ const {
   fetchsubject,
   subjectDelete,
   subjectUpdate,
+  taskList,
+  creatTask,
 } = require("../controllers/subjectController");
 
 router.param("subjectId", async (req, res, next, subjectId) => {
@@ -22,13 +24,14 @@ router.param("subjectId", async (req, res, next, subjectId) => {
 });
 router.get("/", subjectList);
 
+router.get("/tasks", taskList);
 router.delete("/:subjectId", subjectDelete);
 
+router.post("/:subjectId/tasks", creatTask);
 router.get("/", subjectList);
 
 router.put(
   "/:subjectId",
-  passport.authenticate("jwt", { session: false }),
 
   subjectUpdate
 );

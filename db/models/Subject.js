@@ -1,9 +1,7 @@
+const SequelizeSlugify = require("sequelize-slugify");
+
 module.exports = (sequelize, DataTypes) => {
   const Subject = sequelize.define("Subject", {
-    subjectNmae: {
-      type: DataTypes.STRING,
-    },
-
     color: {
       type: DataTypes.STRING,
       // allowNull: false,
@@ -16,6 +14,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TIME,
       // allowNull: false,
     },
+    slug: {
+      type: DataTypes.STRING,
+      unique: true,
+    },
+    name: {
+      type: DataTypes.STRING,
+    },
+  });
+  SequelizeSlugify.slugifyModel(Subject, {
+    source: ["name"],
   });
   return Subject;
 };
